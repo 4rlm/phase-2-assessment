@@ -1,0 +1,23 @@
+<h3>View All Review</h3>
+
+<table class="table table-bordered table-hover table-striped text-nowrap">
+  <tr>
+    <th class="w-small">Author</th>
+    <th class="w-small">Restaurant</th>
+    <th class="w-small">Rating</th>
+    <th class="w-small">Description</th>
+    <th class="w-med">Updated</th>
+    <th colspan="2" class="w-med">Manage</th>
+  </tr>
+  <% @reviews.each do |review|%>
+  <tr>
+    <td><a href="/users/<%= review.user_id %>"><%= review.user.username.capitalize %></a></td>
+    <td><a href="/restaurants/<%= review.restaurant_id %>"><%= review.restaurant.name.capitalize %></a></td>
+    <td><%= review.rating %></td>
+    <td><a href="/reviews/<%= review.id %>"><%= review.description.capitalize %></a></td>
+    <td><%= review.updated_at.strftime('%x')%></td>
+    <td><a href="/reviews/<%= review.id %>/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
+    <td><%= erb :'reviews/_delete', layout: true, locals: { review: review }%></td>
+  </tr>
+  <% end %>
+</table>

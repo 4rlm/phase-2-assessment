@@ -1,0 +1,70 @@
+<div class="">
+
+  <div class="erb_header">
+    <h3>Restaurant Detail View</h3>
+  </div>
+
+  <table class="table table-bordered table-hover table-striped text-nowrap">
+    <tr>
+      <th class="w-small">ID</th>
+      <th class="w-small">Name</th>
+      <th class="w-small">Cuisine</th>
+      <th class="w-small">Address</th>
+      <th class="w-small">City</th>
+      <th class="w-small">State</th>
+      <th class="w-small">Zip</th>
+      <th class="w-med">Updated</th>
+    </tr>
+
+    <tr>
+      <td><%= @restaurant.id %></td>
+      <td><%= @restaurant.name %></td>
+      <td><%= @restaurant.cuisine %></td>
+      <td><%= @restaurant.address %></td>
+      <td><%= @restaurant.city %></td>
+      <td><%= @restaurant.state %></td>
+      <td><%= @restaurant.zip %></td>
+      <td><%= @restaurant.updated_at.strftime('%x')%></td>
+    </tr>
+
+  </table>
+
+
+  <div class="">
+    <h3>Review This Restaurant</h3>
+    <form class="form-horizontal" action="/restaurants/<%= @restaurant.id %>/restaurant_review_form" method="post">
+
+      <div class="row form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input class="form-control" id="description" name="review[description]" type="text" placeholder="Type your review here ..." />
+        </div>
+
+        <label for="rating" class="col-sm-2 control-label">Rating</label>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="5">5</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="4">4</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="3">3</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="2">2</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="1">1</label>
+        </div>
+        rating_num
+      </div>
+
+      <button class="btn btn-success" name="commit" type="submit">Submit My Review</button>
+    </form>
+
+</div>
+
+
+
+
+</div>

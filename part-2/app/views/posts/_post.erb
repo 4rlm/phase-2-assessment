@@ -1,0 +1,9 @@
+<article class="post">
+  <h1><%= post.title %></h1>
+
+  <p class="post_details">Written by <%= post.author_name %> on <%= post.created_at.strftime("%m/%d/%Y") %> || <span class="like_count"><%= post.likes_count %></span> likes</p>
+  <p class="post_body"><%= post.body %></p>
+
+  <%= erb :"posts/_post_like_form", { layout: false, locals: { post: post } } %>
+
+</article>

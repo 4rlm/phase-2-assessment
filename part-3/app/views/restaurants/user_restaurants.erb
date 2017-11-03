@@ -1,0 +1,89 @@
+<div class="">
+
+  <table class="table table-bordered table-hover table-striped text-nowrap">
+    <tr>
+      <th class="w-small">ID</th>
+      <th class="w-small">Username</th>
+      <th class="w-small">Email</th>
+      <th class="w-med">Last Visit</th>
+      <th class="w-med">User Settings</th>
+    </tr>
+
+    <tr>
+      <td><%= @user.id %></td>
+      <td><%= @user.username %></td>
+      <td><%= @user.email %></td>
+      <td><%= @user.updated_at.strftime('%x')%></td>
+      <td><a href="/users/<%= @user.id %>"><span class="glyphicon glyphicon-user"></span></a></td>
+    </tr>
+
+  </table>
+
+
+  <h3>View All My Restaurants</h3>
+
+  <table class="table table-bordered table-hover table-striped text-nowrap">
+    <tr>
+      <th class="w-small">Restaurant Name</th>
+      <th class="w-small">Cuisine</th>
+      <th class="w-small">Address</th>
+      <th class="w-small">City</th>
+      <th class="w-small">State</th>
+      <th class="w-small">Zip</th>
+      <th class="w-small">Reviews</th>
+      <th class="w-small">Ave Rating</th>
+      <th class="w-med">Updated</th>
+      <th class="w-med" colspan="2">Manage</th>
+    </tr>
+
+    <% if @user.restaurants.present? %>
+      <% @user.restaurants.each do |restaurant|%>
+
+      <tr>
+        <td><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></td>
+        <td><%= restaurant.cuisine %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.city %></td>
+        <td><%= restaurant.state %></td>
+        <td><%= restaurant.zip %></td>
+        <td><%= restaurant.reviews.count %></td>
+        <td><%= ratings_average(restaurant.reviews) %> / 5</td>
+        <td><%= restaurant.updated_at.strftime('%x')%></td>
+        <td><a href="/restaurants/<%= restaurant.id %>/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
+        <td><%= erb :'restaurants/_delete', layout: true, locals: { restaurant: restaurant }%></td>
+      </tr>
+
+      <% end %>
+    <% end %>
+  </table>
+
+
+  <div class="row">
+    <h3><a href='/restaurants/new'>Post More Restaurants</a></h3>
+  </div>
+
+  <h3>Restaurants I Reviewed</h3>
+
+  <table class="table table-bordered table-hover table-striped text-nowrap">
+    <tr>
+      <th>Restaurant Name</th>
+      <th>Rating</th>
+      <th>Description</th>
+      <th class="w-med">Updated</th>
+      <th colspan="3" class="w-med">Manage</th>
+    </tr>
+    <% if @user.reviews %>
+    <% @user.reviews.each do |review|%>
+    <tr>
+      <td><a href="/restaurants/<%= review.restaurant_id %>"><%= review.restaurant.name %></a></td>
+      <td><%= review.rating %></td>
+      <td><a href="/reviews/<%= review.id %>"><%= review.description.capitalize %></a></td>
+      <td><%= review.updated_at.strftime('%x')%></td>
+      <td><a href="/reviews/<%= review.id %>/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
+      <td><%= erb :'reviews/_delete', layout: true, locals: { review: review }%></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>
+
+</div>

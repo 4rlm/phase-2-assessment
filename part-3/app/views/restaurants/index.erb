@@ -1,0 +1,28 @@
+<h3>View All Restaurants</h3>
+
+<table class="table table-bordered table-hover table-striped text-nowrap">
+  <tr>
+    <th>Name</th>
+    <th>Cuisine</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Reviews</th>
+    <th>Ave Rating</th>
+    <th class="w-med">Recent Activity</th>
+  </tr>
+  <% @restaurants.each do |restaurant|%>
+  <tr>
+    <td><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></td>
+    <td><%= restaurant.cuisine %></td>
+    <td><%= restaurant.address %></td>
+    <td><%= restaurant.city %></td>
+    <td><%= restaurant.state %></td>
+    <td><%= restaurant.zip %></td>
+    <td><%= restaurant.reviews.count %></td>
+    <td><%= ratings_average(restaurant.reviews) %> / 5</td>
+    <td><%= restaurant.updated_at.strftime('%x')%></td>
+  </tr>
+  <% end %>
+</table>

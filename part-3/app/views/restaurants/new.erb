@@ -1,0 +1,16 @@
+<div class="">
+
+  <div class="erb_header">
+    <h3>Create New Restaurant</h3>
+  </div>
+
+  <form class="form-horizontal" action="/restaurants" method="post">
+
+    <!-- ## Form content moved to partial (_form_fields.erb) -->
+    <%= erb :'restaurants/_form_fields'%>
+
+    <button class="btn btn-success" name="commit" type="submit">Submit New Restaurant</button>
+  </form>
+
+</div>
+

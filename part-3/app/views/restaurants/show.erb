@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row erb_header">
+    <h3>View Details for <%= @restaurant.name.capitalize %></h3>
+  </div>
+
+    <div class="row">
+      <table class="table table-bordered table-hover table-striped text-nowrap">
+        <tr>
+          <th class="w-small">Cuisine</th>
+          <th class="w-small">Address</th>
+          <th class="w-small">City</th>
+          <th class="w-small">State</th>
+          <th class="w-small">Zip</th>
+          <th class="w-med">Updated</th>
+        </tr>
+        <tr>
+          <td><%= @restaurant.cuisine %></td>
+          <td><%= @restaurant.address %></td>
+          <td><%= @restaurant.city %></td>
+          <td><%= @restaurant.state %></td>
+          <td><%= @restaurant.zip %></td>
+          <td><%= @restaurant.updated_at.strftime('%x')%></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="row">
+      <h3>Reviews for <%= @restaurant.name.capitalize %></h3>
+      <table class="table table-bordered table-hover table-striped text-nowrap">
+        <tr>
+          <th class="w-small">Author</th>
+          <th class="w-small">Rating</th>
+          <th class="w-small">Description</th>
+          <th class="w-med">Updated</th>
+        </tr>
+        <% if @restaurant.reviews %>
+        <%  @restaurant.reviews.each do |review| %>
+        <tr>
+          <td><%= review.user.username.capitalize %></td>
+          <td><%= review.rating %></td>
+          <td><%= review.description %></td>
+          <td><%= review.updated_at.strftime('%x')%></td>
+        </tr>
+        <% end %>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="row">
+      <h3>Review This Restaurant</h3>
+      <form class="form-horizontal" action="/restaurants/<%= @restaurant.id %>/restaurant_review_form" method="post">
+
+      <div class="row form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input class="form-control" id="description" name="review[description]" type="text" placeholder="Type your review here ..." />
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="rating" class="col-sm-1 control-label">Rating</label>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="5">5</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="4">4</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="3">3</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="2">2</label>
+        </div>
+        <div class="col-sm-2 radio-inline">
+          <label><input type="radio" name="review[rating]" value="1">1</label>
+        </div>
+      </div>
+      <button class="btn btn-success" name="commit" type="submit">Submit My Review</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
